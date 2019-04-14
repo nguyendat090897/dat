@@ -1,0 +1,16 @@
+C:\Users\Mr. Right_Hand\Desktop\[Sharecode.vn] Code chuong trinh quan ly thu vien full code c#\UnitTestLB\bin\Debug\UnitTestLB.dll
+C:\Users\Mr. Right_Hand\Desktop\[Sharecode.vn] Code chuong trinh quan ly thu vien full code c#\UnitTestLB\bin\Debug\UnitTestLB.pdb
+C:\Users\Mr. Right_Hand\Desktop\[Sharecode.vn] Code chuong trinh quan ly thu vien full code c#\UnitTestLB\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Mr. Right_Hand\Desktop\[Sharecode.vn] Code chuong trinh quan ly thu vien full code c#\UnitTestLB\bin\Debug\QuanLyThuVien.exe
+C:\Users\Mr. Right_Hand\Desktop\[Sharecode.vn] Code chuong trinh quan ly thu vien full code c#\UnitTestLB\bin\Debug\QuanLyThuVien.pdb
+C:\Users\Mr. Right_Hand\Desktop\[Sharecode.vn] Code chuong trinh quan ly thu vien full code c#\UnitTestLB\obj\Debug\UnitTestLB.csprojResolveAssemblyReference.cache
+C:\Users\Mr. Right_Hand\Desktop\[Sharecode.vn] Code chuong trinh quan ly thu vien full code c#\UnitTestLB\obj\Debug\UnitTestLB.dll
+C:\Users\Mr. Right_Hand\Desktop\[Sharecode.vn] Code chuong trinh quan ly thu vien full code c#\UnitTestLB\obj\Debug\UnitTestLB.pdb
+C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\bin\Debug\UnitTestLB.dll
+C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\bin\Debug\UnitTestLB.pdb
+C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\bin\Debug\QuanLyThuVien.exe
+C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\bin\Debug\QuanLyThuVien.pdb
+C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\obj\Debug\UnitTestLB.csprojResolveAssemblyReference.cache
+C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\obj\Debug\UnitTestLB.dll
+C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\obj\Debug\UnitTestLB.pdb
