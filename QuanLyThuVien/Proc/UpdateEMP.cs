@@ -36,55 +36,55 @@ namespace QuanLyThuVien.Proc
             try
             {
                 if (ten.ToString() == "")
-            {
-                MessageBox.Show("Vui lòng nhập chi tiết");
-            }
-                if (email.Length > 40)
+                {
+                    MessageBox.Show("Vui lòng nhập chi tiết");
+                }
+                else if (email.Length > 40)
                 {
                     MessageBox.Show("Không vượt quá 40 ký tự");
                     return false;
                 }
-                else
-            {
-                if (sdt.Length > 0)
-                {
-                    if (sdt.Length  < 10 && sdt.Length > 0)
+                else if (sdt.Length  < 10 && sdt !="")
                     {
                         MessageBox.Show("Số điện thoại bé hơn 10 số");
                         return false;
                     }
-                }
-                    if (int.Parse(age) < 18 || int.Parse(age) > 55)
+                    else if (sdt.Length >12)
+                    {
+                        MessageBox.Show("Số điện thoại lớn hơn 12 số");
+                        return false;
+                    }
+                else if(int.Parse(age) < 18 || int.Parse(age) > 55)
                     {
                         MessageBox.Show("sai tuổi");
                         return false;
                     }
-                    if (Ischar(ten) == false)
+                else if (Ischar(ten) == false)
                     {
                         MessageBox.Show("Họ và Tên phải là chữ");
                         return false;
                     }
-                    if (ten.Length > 50)
+                else if (ten.Length > 50)
                     {
                         MessageBox.Show("Tên quá dài hoặc quá ngắn");
                         return false;
                     }
-                    if (dc.Length > 150)
+                else if (dc.Length > 150)
                     {
                         MessageBox.Show("Địa chỉ lớn hơn 150 ký tự");
                         return false;
                     }
-                    if (Ischar(per) == false)
+                else if (Ischar(per) == false)
                     {
                         MessageBox.Show("Phải là ký tự");
                         return false;
                     }
-                    if (per.Length > 50)
+                else if (per.Length > 50)
                     {
                         MessageBox.Show("Chức vụ phải nhỏ hỏn 50 ký tự");
                         return false;
                     }
-                    if (!string.IsNullOrEmpty(email))
+                else if (!string.IsNullOrEmpty(email))
                     {
                         
                        if  (isEmail(email) == false)
@@ -107,7 +107,6 @@ namespace QuanLyThuVien.Proc
                         MessageBox.Show("Sửa thành công");
                     return true;
                 }
-            }
             }
             catch
             { return false; }
@@ -180,36 +179,33 @@ namespace QuanLyThuVien.Proc
                             MessageBox.Show("Nhập sai định dạng về quyền hạn");
                         return false;
                         }
-                    if (sdt.Length > 0)
-                    {
-                        if (sdt.Length < 10 && sdt.Length > 0)
+                      if (sdt.Length < 10 && sdt != "")
                         {
                             MessageBox.Show("Số điện thoại bé hơn 10 số");
                             return false;
                         }
-                    }
-                     if (int.Parse(age) < 18 || int.Parse(age) > 55)
+                        else if (sdt.Length > 12)
+                        {
+                            MessageBox.Show("Số điện thoại lớn hơn 12 số");
+                            return false;
+                        }
+                        else if(int.Parse(age) < 18 || int.Parse(age) > 55)
                     {
                         MessageBox.Show("sai tuổi");
                         return false;
                     }
-                     if (dc.Length >150)
+                        else if (dc.Length >150)
                         {
                             MessageBox.Show("Địa chỉ lớn hơn 150 ký tự");
                             return false;
                         }
-                     if (sdt.Length >0 &&(sdt.Length <10 || sdt.Length >12))
-                        {
-                            MessageBox.Show("SDT phải lớn hơn 10 và nhỏ hơn 12");
-                            return false;
-                        }
-                     
-                  /*  if (isnumber(char.Parse(sdt)) == false )
-                                    {
-                                        MessageBox.Show("Không đúng định dạng số");
-                                        return false;
-                                    }*/
-                    if (emailchange == 1)
+
+                        /*  if (isnumber(char.Parse(sdt)) == false )
+                                          {
+                                              MessageBox.Show("Không đúng định dạng số");
+                                              return false;
+                                          }*/
+                        else if(emailchange == 1)
                     {
                            
                             if (!string.IsNullOrEmpty(email))
@@ -227,7 +223,6 @@ namespace QuanLyThuVien.Proc
                                 if (!string.IsNullOrEmpty(Quyen))   
                                 {
                                     MessageBox.Show("Email đã tồn tại!");
-                                MessageBox.Show(emailchange+""+tentkchange);
                                 return false;
                                 }
                                 else
@@ -238,27 +233,27 @@ namespace QuanLyThuVien.Proc
                                      }
                                 }
                     }
-                    if (Ischar(per)==false)
+                        else if(Ischar(per)==false)
                         {
                             MessageBox.Show("Phải là ký tự");
                             return false;
                         }
-                    if (per.Length >50)
+                        else if(per.Length >50)
                         {
                             MessageBox.Show("Chức vụ phải nhỏ hỏn 50 ký tự");
                             return false;
                         }
-                    if (Ischar(tennv) == false)
+                        else if(Ischar(tennv) == false)
                     {
                         MessageBox.Show("Họ và Tên phải là chữ");
                         return false;
                     }
-                    if (tennv =="")
+                        else  if (tennv =="")
                     {
                         MessageBox.Show("Họ và tên không được để trống");
                         return false;
                     }
-                    if (mk.Length < 6 || mk.Length >30)
+                        else if(mk.Length < 6 || mk.Length >30)
                     {
                         MessageBox.Show("Mật khẩu phải từ 6 ký tự và bé hơn 30 ké tự");
                         return false;

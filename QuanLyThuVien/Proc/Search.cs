@@ -174,5 +174,23 @@ namespace QuanLyThuVien.Proc
             }
             return "";
         }
+        public string Search3(string MASACH, string TENSACH,string MATG, string MANXB, string MaLV,string NAMXB, string SOLUONG, string NGAYNHAP)
+        {
+            string d;
+            try
+            {
+                /*   d = ("select*from tblSach where MASACH like'%" + MASACH + "%'or TENSACH like'%"
+                       + TENSACH + "%'or MATG like'%" + MATG + "%'or MANXB like'%" + MANXB + "%'or MaLV like'%"
+                       + MaLV + "%'or NAMXB='" + NAMXB + "'or SOLUONG='" + SOLUONG + "'or NGAYNHAP='" + NGAYNHAP + "'");
+               cls.ThucThiSQLTheoPKN(d);*/
+                return "select*from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')";
+            }
+            catch
+            {
+                return "select * from tblSach";
+            }
+        }
     }
 }

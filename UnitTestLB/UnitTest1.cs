@@ -14,7 +14,7 @@ namespace UnitTestLB
         UpdateEMP update = new UpdateEMP();
         Create_Acc cre = new Create_Acc();
         CheckDate year = new CheckDate();
-
+        Update_BookInf book = new Update_BookInf();
         ///Login-------------------
         ///"Kiểm tra đăng nhập.
         ///
@@ -184,8 +184,6 @@ namespace UnitTestLB
             bool expected = true;
             Assert.AreEqual(expected, actual);
         }
-
-
         /// <summary>
         ///''Sửa mật khẩu ̣̣̣̣̣̣(số kí tự nhỏ hơn 6).
         /// </summary>
@@ -354,8 +352,6 @@ namespace UnitTestLB
             bool expected = false;
             Assert.AreEqual(expected, actual);
         }
-
-/*
         /// <summary>
         ///'Sửa số điện thoại ( ký tự là số,  số kí tự phải lớn hơn 10 và nhỏ 12)
         /// </summary>
@@ -378,8 +374,6 @@ namespace UnitTestLB
             bool expected = true;
             Assert.AreEqual(expected, actual);
         }
-
-
         /// <summary>
         ///'Sửa số điện thoại ( có ký tự chữ và số).
         /// </summary>
@@ -402,8 +396,6 @@ namespace UnitTestLB
             bool expected = false;
             Assert.AreEqual(expected, actual);
         }
-
-
         /// <summary>
         //'Sửa số điện thoại ( để trống).
         /// </summary>
@@ -426,8 +418,6 @@ namespace UnitTestLB
             bool expected = true;
             Assert.AreEqual(expected, actual);
         }
-
-
         /// <summary>
         ///'Sửa số điện thoại ( số kí tự lớn hơn 12).
         /// </summary>
@@ -450,7 +440,16 @@ namespace UnitTestLB
             bool expected = false;
             Assert.AreEqual(expected, actual);
         }
-*/
+        /*
+
+
+                
+
+
+                
+
+               
+        */
 
         /// <summary>
         ///''Thay đổi email ( số ký tự nhỏ hơn 100).
@@ -676,54 +675,46 @@ namespace UnitTestLB
             bool expected = true;
             Assert.AreEqual(expected, actual);
         }
-     /*   /// <summary>
+        /// <summary>
         ///''Nút Xóa (xóa được tài khoản là user).
         /// </summary>
         [TestMethod]
         public void LB_0030()
         {
+            checkThongTinNhanVien emp = new checkThongTinNhanVien();
+
             string tentk = "admin";
             string mk = "admin1";
-            string qh = "admin";
-            string tennv = "Tan Dat";
-            string dc = "TPHCM";
-            string dt = "01254015705";
-            string email = "dat5@gmail.com";
-            string cv = "admin";
-            string age = "22";
+            string qh = "user";
             int emailchange = 0;
             int tentkchange = 0;
 
-            bool actual = update.UpdateEmp2(tentk, mk, qh, tennv, dc, dt, email, cv, age, emailchange, tentkchange);
-            bool expected = true;
+            string actual = checkThongTinNhanVien.check_delete_emp(qh, tentk);
+            string expected = "Không thể xóa tài khoản admin";
             Assert.AreEqual(expected, actual);
-        }
+        }  
         /// <summary>
         ///'Nút Xóa (xóa được tài khoản là admin).
         /// </summary>
         [TestMethod]
         public void LB_0031()
         {
+            checkThongTinNhanVien emp = new checkThongTinNhanVien();
+
             string tentk = "admin";
             string mk = "admin1";
             string qh = "admin";
-            string tennv = "Tan Dat";
-            string dc = "TPHCM";
-            string dt = "01254015705";
-            string email = "dat5@gmail.com";
-            string cv = "admin";
-            string age = "22";
             int emailchange = 0;
             int tentkchange = 0;
 
-            bool actual = update.UpdateEmp2(tentk, mk, qh, tennv, dc, dt, email, cv, age, emailchange, tentkchange);
-            bool expected = true;
+            string actual = checkThongTinNhanVien.check_delete_emp(qh, tentk);
+            string expected = "0";
             Assert.AreEqual(expected, actual);
         }
-        */
-        /// <summary>
-        ///' Sửa tên nhân viên (ký tự là chữ).
-        /// </summary>
+
+     /// <summary>
+     ///' Sửa tên nhân viên (ký tự là chữ).
+     /// </summary>
         [TestMethod]
         public void LB_0032()
         {
@@ -757,7 +748,7 @@ namespace UnitTestLB
             bool expected = false;
             Assert.AreEqual(expected, actual);
         }
-       
+
         /// <summary>
         ///' Sửa tên nhân viên (để trống).
         /// </summary>
@@ -811,6 +802,8 @@ namespace UnitTestLB
             bool actual = update.UpdateEmp(ten, dc, dt, em, per, age);
             bool expected = true;
             Assert.AreEqual(expected, actual);
+
+
         }/// <summary>
          ///'Sửa địa chỉ ( để trống )
          /// </summary>
@@ -849,7 +842,7 @@ namespace UnitTestLB
             bool expected = false;
             Assert.AreEqual(expected, actual);
         }
-    /*    /// <summary>
+        /// <summary>
         ///'Sửa số điện thoại ( ký tự là số,  số kí tự phải lớn hơn 10 và nhỏ 12)
         /// </summary>
         [TestMethod]
@@ -858,8 +851,8 @@ namespace UnitTestLB
 
             string ten = "Tùng";
             string dc = "TPHCM";
-            string dt = "0336411008";
-            string em = "dat5@gmail.com";
+            string dt = "0336411123";
+            string em = "";
             string per = "admin";
             string age = "22";
 
@@ -867,7 +860,6 @@ namespace UnitTestLB
             bool expected = true;
             Assert.AreEqual(expected, actual);
         }
-
         /// <summary>
         ///'Sửa số điện thoại ( có ký tự chữ và số).
         /// </summary>
@@ -877,16 +869,15 @@ namespace UnitTestLB
 
             string ten = "Tùng";
             string dc = "TPHCM";
-            string dt = "0336411008";
+            string dt = "0336411008a";
             string em = "dat5@gmail.com";
             string per = "admin";
             string age = "22";
 
             bool actual = update.UpdateEmp(ten, dc, dt, em, per, age);
-            bool expected = true;
+            bool expected = false;
             Assert.AreEqual(expected, actual);
         }
-
         /// <summary>
         ///'Sửa số điện thoại ( để trống).
         /// </summary>
@@ -896,7 +887,7 @@ namespace UnitTestLB
 
             string ten = "Tùng";
             string dc = "TPHCM";
-            string dt = "0336411008";
+            string dt = "";
             string em = "dat5@gmail.com";
             string per = "admin";
             string age = "22";
@@ -905,7 +896,6 @@ namespace UnitTestLB
             bool expected = true;
             Assert.AreEqual(expected, actual);
         }
-
         /// <summary>
         ///'Sửa số điện thoại ( số kí tự lớn hơn 12).
         /// </summary>
@@ -915,16 +905,16 @@ namespace UnitTestLB
 
             string ten = "Tùng";
             string dc = "TPHCM";
-            string dt = "0336411008";
+            string dt = "03364110081234123123";
             string em = "dat5@gmail.com";
             string per = "admin";
             string age = "22";
 
             bool actual = update.UpdateEmp(ten, dc, dt, em, per, age);
-            bool expected = true;
+            bool expected = false;
             Assert.AreEqual(expected, actual);
         }
-        */
+        
         /// <summary>
         ///'Thay đổi email ( số ký tự nhỏ hơn 100).
         /// </summary>
@@ -1109,6 +1099,7 @@ namespace UnitTestLB
             bool expected = false;
             Assert.AreEqual(expected, actual);
         }
+        
         /// <summary>
         ///' 'Tên tài khoản (tên tài khoản trùng lập nhau).
         /// </summary>
@@ -1690,9 +1681,662 @@ namespace UnitTestLB
             Assert.AreEqual(expected, actual);
 
         }
-        
 
+        //'Mã sách (gồm chữ và số có số ký tự lớn lớn hơn 4 nhỏ hơn 11).
+        [TestMethod]
+        public void LB_0094()
+        {
+            string ms = "ENG01dat";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2008";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = true;
+            Assert.AreEqual(expected, actual);
 
+        }
+
+        //''Mã sách (có số ký tự nhỏ hơn 5).
+        [TestMethod]
+        public void LB_0095()
+        {
+            string ms = "TVS";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2008";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //''Mã sách (có số ký tự lớn hơn 10).
+        [TestMethod]
+        public void LB_0096()
+        {
+            string ms = "TV- SGK-TANC2";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2008";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Tên sách ( có số ký tự lớn hơn 0 và bé hơn bằng 100)
+        [TestMethod]
+        public void LB_0097()
+        {
+            string ms = "ENG01dat";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2008";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = true;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Tên sách (để trống)
+        [TestMethod]
+        public void LB_0098()
+        {
+            string ms = "ENG01dat123";
+            string ts = "";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2008";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Tên sách (có số ký tự lớn hơn 100).
+        [TestMethod]
+        public void LB_0099()
+        {
+            string ms = "ENG01da12";
+            string ts = "TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2008";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Năm xuất bản ( định dạng "yyyy" với số năm lớn hơn bằng 1900 và nhỏ hơn bằng 2019).
+
+        [TestMethod]
+        public void LB0100()
+        {
+            string ms = "ENG01datz";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2005";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Năm xuất bản (nhập năm xuất bản khác định dạng năm " yyyy").
+        [TestMethod]
+        public void LB_0101()
+        {
+            string ms = "ENG01datz1";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "yyyy";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //' Năm xuất bản ( số năm nhỏ hơn 1900)
+        [TestMethod]
+        public void LB_0102()
+        {
+            string ms = "ENG01dat";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "1800";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Năm xuất bản ( số năm lớn hơn 2019).
+        [TestMethod]
+        public void LB_00103()
+        {
+            string ms = "ENG01datz3";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2024";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Số trang ( định dạng là số dương).
+        [TestMethod]
+        public void LB_0104()
+        {
+            string ms = "ENG01dat";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2008";
+            string st = "1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = true;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Số trang ( nhập khác định dạng là số dương)
+        [TestMethod]
+        public void LB_0105()
+        {
+            string ms = "ENG01datz4";
+            string ts = "TIENG ANH 1";
+            string tg = "MTG10";
+            string mnx = "NDONG1";
+            string mlv = "lv01";
+            string nxb = "2008";
+            string st = "-1000";
+            string sl = "3000";
+            string ngay = "10/08/2017";
+            string gc = "";
+            Login lg = new Login();
+            Search search = new Search();
+            bool actual = book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        /// <summary>
+        /// ///Tìm kiếm nâng cao ( để trống hết tất cả các mục rồi bấm nút tìm).
+        /// </summary>
+        [TestMethod]
+        public void LB_0106()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo mã sách và nhập đúng mã sách ).
+        /// </summary>
+        [TestMethod]
+        public void LB_0107()
+        {
+            string MASACH = "MSA12";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo mã sách và nhập sai mã sách ).
+        /// </summary>
+        [TestMethod]
+        public void LB_0108()
+        {
+            string MASACH = "MVV12";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo tên sách và nhập đúng tên sách).
+        /// </summary>
+        [TestMethod]
+        public void LB_0109()
+        {
+            string MASACH = "";
+            string TENSACH = " Ai la nguoi vi dai";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo tên sách và nhập sai tên sách).
+        /// </summary>
+        [TestMethod]
+        public void LB_0110()
+        {
+            string MASACH = "";
+            string TENSACH = " ads af";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo mã tác giả và nhập đúng mã tác giả).
+        /// </summary>
+        [TestMethod]
+        public void LB_0111()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "MTG10";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo mã tác giả và nhập sai mã tác giả).
+        /// </summary>
+        [TestMethod]
+        public void LB_0112()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "MTVG04";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo mã nhà xuất bản và nhập đúng mã nhà xuất bản).
+        /// </summary>
+        [TestMethod]
+        public void LB_0113()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "MNXB13";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo mã nhà xuất bản và nhập sai mã nhà xuất bản).
+        /// </summary>
+        [TestMethod]
+        public void LB_0114()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "MBHN132";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo mã lĩnh vực và nhập đúng mã lĩnh vực).
+        /// </summary>
+        [TestMethod]
+        public void LB_0115()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "MLV10";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo mã lĩnh vực và nhập sai mã lĩnh vực).
+        /// </summary>
+        [TestMethod]
+        public void LB_0116()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "MKLU123";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// Tìm kiếm nâng cao ( tìm theo năm xuất bản và nhập sai năm xuất bản).
+        /// </summary>
+        [TestMethod]
+        public void LB_0117()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "2025";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo năm xuất bản và nhập đúng năm xuất bản).
+        /// </summary>
+        [TestMethod]
+        public void LB_0118()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "2000";
+            string SOLUONG = "";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo số lượng và nhập đúng số lượng).
+        /// </summary>
+        [TestMethod]
+        public void LB_0119()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "500";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo số lượng và nhập sai số lượng).
+        /// </summary>
+        [TestMethod]
+        public void LB_0120()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "50000";
+            string NGAYNHAP = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo ngày nhập và nhập đúng ngày nhập).
+        /// </summary>
+        [TestMethod]
+        public void LB_0121()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "05/06/2016";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ///'Tìm kiếm nâng cao ( tìm theo ngày nhập và nhập đúng ngày nhập).
+        /// </summary>
+        [TestMethod]
+        public void LB_0122()
+        {
+            string MASACH = "";
+            string TENSACH = "";
+            string MATG = "";
+            string MANXB = "";
+            string MaLV = "";
+            string NAMXB = "";
+            string SOLUONG = "";
+            string NGAYNHAP = "05/06/2055";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+            object expected = lg.layGiaTri("select * from tblSach where (MASACH like'%" + MASACH + "%'and TENSACH like'%"
+                    + TENSACH + "%'and MATG like'%" + MATG + "%'and MANXB like'%" + MANXB + "%'and MaLV like'%"
+                    + MaLV + "%'and NAMXB like '%" + NAMXB + "%'and SOLUONG like '%" + SOLUONG + "%'and NGAYNHAP like '%" + NGAYNHAP + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
 
 
 

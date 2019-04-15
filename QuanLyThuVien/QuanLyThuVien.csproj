@@ -133,6 +133,7 @@
     <Compile Include="Proc\Login.cs" />
     <Compile Include="Proc\Search.cs" />
     <Compile Include="Proc\UpdateEMP.cs" />
+    <Compile Include="Proc\Update_BookInf.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

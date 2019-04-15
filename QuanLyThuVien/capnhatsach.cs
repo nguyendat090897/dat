@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using QuanLyThuVien.Proc;
 namespace QuanLyThuVien
 {
     public partial class capnhatsach : Form
@@ -26,22 +26,56 @@ namespace QuanLyThuVien
             cls.LoadData2Combobox(cbotenTG,"Select TENTG from tblTacGia");
             cls.LoadData2Combobox(cbotenNXB,"Select TENNXB from tblNXB");
         }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtMASACH.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtTENSACH.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            cboMATG.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            cboMANXB.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            cboMALv.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+            txtNAMXB.Text = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString();
+            txtSOTRANG.Text = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
+            txtSOLUONG.Text = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
+            txtsachhong.Text ="";
+            maskedTextBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString();
+            richTextBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[13].Value.ToString();
 
+        }
         private void button1_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                string strInsert = "Insert Into tblSach(MASACH,TENSACH,MATG,MANXB,MALv,NAMXB,SOTRANG,SOLUONG,SOSACHHONG,NGAYNHAP,GHICHU) values ('" + txtMASACH.Text + "','" + txtTENSACH.Text + "','" + cboMATG.Text + "','" + cboMANXB.Text + "','" + cboMALv.Text + "','" + txtNAMXB.Text + "','" + txtSOTRANG.Text + "','" + txtSOLUONG.Text + "','" + txtsachhong.Text + "','" + maskedTextBox1.Text + "','" + richTextBox1.Text + "')";
-                cls.ThucThiSQLTheoPKN(strInsert);
+           string ms= txtMASACH.Text;
+            string ts = txtTENSACH.Text;
+            string tg = cboMATG.Text;
+            string mnx = cboMANXB.Text;
+            string mlv = cboMALv.Text;
+            string nxb = txtNAMXB.Text;
+            string st = txtSOTRANG.Text;
+            string sl = txtSOLUONG.Text;
+            string ngay = maskedTextBox1.Text;
+            string gc = richTextBox1.Text;
+
+            Update_BookInf book = new Update_BookInf();
+
+            if (book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc) == true)
                 cls.LoadData2DataGridView(dataGridView1, "select *from tblSach");
-            }
-            catch { MessageBox.Show("Trùng mã"); };
-        }
+            else book.Update_Bookinfs(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);       
+       }
 
         int dem = 0;
         string masach;
         private void button2_Click(object sender, EventArgs e)
         {
+            string ms = txtMASACH.Text;
+            string ts = txtTENSACH.Text;
+            string tg = cboMATG.Text;
+            string mnx = cboMANXB.Text;
+            string mlv = cboMALv.Text;
+            string nxb = txtNAMXB.Text;
+            string st = txtSOTRANG.Text;
+            string sl = txtSOLUONG.Text;
+            string ngay = maskedTextBox1.Text;
+            string gc = richTextBox1.Text;
+
             if (dem == 0)
             {
                 masach = txtMASACH.Text;
@@ -51,34 +85,21 @@ namespace QuanLyThuVien
             }
             else
             {
-                string strUpdate = "Update tblSach set MASACH='" + txtMASACH.Text + "',TENSACH='" + txtTENSACH.Text + "',MATG='" + cboMATG.Text + "',MANXB='" + cboMANXB.Text + "',MaLv='" + cboMALv.Text + "',NAMXB='" + txtNAMXB.Text + "',SOTRANG='" + txtSOTRANG.Text + "',SOLUONG='" + txtSOLUONG.Text + "',SOSACHHONG='" + txtsachhong.Text + "',NGAYNHAP='" + maskedTextBox1.Text + "',GHICHU='" + richTextBox1.Text + "' where MASACH='" + masach + "'";
-                cls.ThucThiSQLTheoPKN(strUpdate);
+                Update_BookInf book = new Update_BookInf();
+                if (book.changed_book(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc) == true)
+                { 
                 cls.LoadData2DataGridView(dataGridView1, "select *from tblSach");
                 button1.Enabled = true;
                 button3.Enabled = true;
                 dem = 0;
-                MessageBox.Show("Sửa thành công");
+                }
+                else 
+                 book.changed_book(ms, ts, tg, mnx, mlv, nxb, st, sl, ngay, gc);
+                
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                txtMASACH.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                txtTENSACH.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                cboMATG.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                cboMANXB.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                cboMALv.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-                txtNAMXB.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
-                txtSOTRANG.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
-                txtSOLUONG.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
-                txtsachhong.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
-                maskedTextBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString();
-                richTextBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
-            }
-            catch { };
-        }
+       
 
         private void button3_Click(object sender, EventArgs e)
         {

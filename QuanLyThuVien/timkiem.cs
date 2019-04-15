@@ -64,32 +64,46 @@ namespace QuanLyThuVien
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Search sea = new Search();
-            maskedTextBox1.Text = "";
-            if (maskedTextBox2.Text =="" && sea.search_2("MASACH", textBox2.Text) == "" && sea.search_2("TENSACH", textBox3.Text) == "" && sea.search_2("TENTG", textBox4.Text) == ""
-                && sea.search_2("TENNXB", textBox5.Text) == "" && sea.search_2("MALINHVUC", textBox7.Text) == ""  && sea.search_2("NGAYNHAP", maskedTextBox1.Text) == "")
-            {
-                DateTime now = DateTime.Now;
-                maskedTextBox2.Text = now.Year.ToString();
-                DateTime.ParseExact(maskedTextBox2.Text, "yyyy", null);
-            };
-            if (maskedTextBox1.Text == "" && maskedTextBox2.Text == "" && sea.search_2("MASACH", textBox2.Text) == "" && sea.search_2("TENSACH", textBox3.Text) == "" && sea.search_2("TENTG", textBox4.Text) == ""
-                && sea.search_2("TENNXB", textBox5.Text) == "" && sea.search_2("MALINHVUC", textBox7.Text) == "" )
-            {
+           Search sea = new Search();
+            /*  maskedTextBox1.Text = "";
+             if (maskedTextBox2.Text =="" && sea.search_2("MASACH", textBox2.Text) == "" && sea.search_2("TENSACH", textBox3.Text) == "" && sea.search_2("TENTG", textBox4.Text) == ""
+                 && sea.search_2("TENNXB", textBox5.Text) == "" && sea.search_2("MALINHVUC", textBox7.Text) == ""  && sea.search_2("NGAYNHAP", maskedTextBox1.Text) == "")
+             {
+                 DateTime now = DateTime.Now;
+                 maskedTextBox2.Text = now.Year.ToString();
+                 DateTime.ParseExact(maskedTextBox2.Text, "yyyy", null);
+             };
+             if (maskedTextBox1.Text == "" && maskedTextBox2.Text == "" && sea.search_2("MASACH", textBox2.Text) == "" && sea.search_2("TENSACH", textBox3.Text) == "" && sea.search_2("TENTG", textBox4.Text) == ""
+                 && sea.search_2("TENNXB", textBox5.Text) == "" && sea.search_2("MALINHVUC", textBox7.Text) == "" )
+             {
 
-                maskedTextBox1.Text = "15042019";
-               // DateTime.ParseExact(maskedTextBox1.Text, "dd/mm/yyyy", null);
-            };
+                 maskedTextBox1.Text = "15042019";
+                // DateTime.ParseExact(maskedTextBox1.Text, "dd/mm/yyyy", null);
+             };
 
-            if (sea.search_2("MASACH", textBox2.Text)=="" && sea.search_2("TENSACH", textBox3.Text) == "" && sea.search_2("TENTG", textBox4.Text) == "" 
-                && sea.search_2("TENNXB", textBox5.Text) == "" && sea.search_2("MALINHVUC", textBox7.Text) == "" && sea.search_2("NAMXB", maskedTextBox2.Text) == ""
-                && sea.search_2("NGAYNHAP", maskedTextBox1.Text) == "");
-   
+             if (sea.search_2("MASACH", textBox2.Text)=="" && sea.search_2("TENSACH", textBox3.Text) == "" && sea.search_2("TENTG", textBox4.Text) == "" 
+                 && sea.search_2("TENNXB", textBox5.Text) == "" && sea.search_2("MALINHVUC", textBox7.Text) == "" && sea.search_2("NAMXB", maskedTextBox2.Text) == ""
+                 && sea.search_2("NGAYNHAP", maskedTextBox1.Text) == "");
+
+             {
+             cls.LoadData2DataGridView(dataGridView2, "select*from tblSach where MASACH like'%" + textBox2.Text 
+                 + "%'and TENSACH like'%" + textBox3.Text + "%'and TENTG like'%" + textBox4.Text + "%'and TENNXB like'%" + textBox5.Text 
+                 + "%'and MaLv like'%" + textBox7.Text + "%'and NAMXB like '%" + maskedTextBox2.Text + "%' and NGAYNHAP like '%"  + maskedTextBox1.Text + "%'");
+             };*/
+            string MASACH = textBox2.Text;
+                string TENSACH = textBox3.Text;
+                string MATG = textBox4.Text;
+                string MANXB = textBox5.Text;
+                string MaLV = textBox7.Text;
+                string NAMXB = maskedTextBox2.Text;
+                string SOLUONG = textBox8.Text;
+            string NGAYNHAP = maskedTextBox1.Text;
+            if (NGAYNHAP == "  /  /")
             {
-            cls.LoadData2DataGridView(dataGridView2, "select*from tblSach where MASACH like'%" + textBox2.Text 
-                + "%'and TENSACH like'%" + textBox3.Text + "%'and TENTG like'%" + textBox4.Text + "%'and TENNXB like'%" + textBox5.Text 
-                + "%'and MaLv like'%" + textBox7.Text + "%'and NAMXB like '%" + maskedTextBox2.Text + "%' and NGAYNHAP like '%"  + maskedTextBox1.Text + "%'");
-            };
+                NGAYNHAP = "";
+            }
+            cls.LoadData2DataGridView(dataGridView2, sea.Search3(MASACH, TENSACH, MATG, MANXB, MaLV, NAMXB, SOLUONG, NGAYNHAP));
+
         }
 
         private void button4_Click(object sender, EventArgs e)
