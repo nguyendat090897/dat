@@ -12,10 +12,12 @@ namespace UnitTestLB
         string new1 = "admin1";
         string new2 = "admin1";
         UpdateEMP update = new UpdateEMP();
-
+        Create_Acc cre = new Create_Acc();
+        CheckDate year = new CheckDate();
 
         ///Login-------------------
         ///"Kiểm tra đăng nhập.
+        ///
         [TestMethod]
         public void LB_0001()
         {
@@ -1107,9 +1109,588 @@ namespace UnitTestLB
             bool expected = false;
             Assert.AreEqual(expected, actual);
         }
+        /// <summary>
+        ///' 'Tên tài khoản (tên tài khoản trùng lập nhau).
+        /// </summary>
+        [TestMethod]
+        public void LB_0055()
+        {
+
+            string ten = "admin";
+            string pass = "dat123";
+            string pass2 = "dat123";
+            
+            bool actual = cre.Create(ten, pass, pass2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        //ên tài khoản (số kí tự lớn hơn 1 và nhỏ hơn 50. Không có ký tư đặc biệt).
+        /// </summary>
+        [TestMethod]
+        public void LB_0056()
+        {
+
+            string ten = "Trung123";
+            string pass = "dat123";
+            string pass2 = "dat123";
+
+            bool actual = cre.Create(ten, pass, pass2);
+            bool expected = true;
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        //ên tài khoản (số kí tự lớn hơn 1 và nhỏ hơn 50. Không có ký tư đặc biệt).
+        /// </summary>
+        [TestMethod]
+        public void LB_0057()
+        {
+
+            string ten = "Trung123Trung123Trung123Trung123Trung123Trung123Trung123Trung123Trung123Trung123Trung123Trung123";
+            string pass = "dat123";
+            string pass2 = "dat123";
+
+            bool actual = cre.Create(ten, pass, pass2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        //ê'Tên tài khoản (để trống).
+        /// </summary>
+        [TestMethod]
+        public void LB_0058()
+        {
+
+            string ten = "";
+            string pass = "dat123";
+            string pass2 = "dat123";
+
+            bool actual = cre.Create(ten, pass, pass2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        //'Sửa mật khẩu ̣̣̣̣̣̣(số kí tự phải lớn hơn 6 và nhỏ hơn 30).
+        /// </summary>
+        [TestMethod]
+        public void LB_0059()
+        {
+
+            string ten = "trung1234";
+            string pass = "123456";
+            string pass2 = "123456";
+
+            bool actual = cre.Create(ten, pass, pass2);
+            bool expected = true;
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        //'Sửa mật khẩu ̣̣̣̣̣̣(số kí tự nhỏ hơn 6).
+        /// </summary>
+        [TestMethod]
+        public void LB_0060()
+        {
+
+            string ten = "Trung1235";
+            string pass = "a123";
+            string pass2 = "a123";
+
+            bool actual = cre.Create(ten, pass, pass2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        //'Sửa mật khẩu ̣̣̣̣̣̣(số kí tự lớn hơn 30).
+        /// </summary>
+        [TestMethod]
+        public void LB_0061()
+        {
+
+            string ten = "Trung1235";
+            string pass = "dat123dat123dat123dat123dat123dat123dat123dat123dat123dat123dat123dat123dat123";
+            string pass2 = "dat123dat123dat123dat123dat123dat123dat123dat123dat123dat123dat123dat123dat123";
+
+            bool actual = cre.Create(ten, pass, pass2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+        }
+       
+        /// <summary>
+        //'Xác nhận lại ( nhập không trùng khớp với mật khẩu)
+        /// </summary>
+        [TestMethod]
+        public void LB_0063()
+        {
+
+            string ten = "Trung1234";
+            string pass = "dat123";
+            string pass2 = "dat123456";
+
+            bool actual = cre.Create(ten, pass, pass2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+        }
+        ///'Mật khẩu cũ (nhập trùng khớp với mật khẩu của tài khoản).
+        [TestMethod]
+        public void LB_0064()
+        {
+            string tk = "admin";
+            string passold = "admin1";
+            string passnew = "admin1";
+            string passnew2 = "admin1";
+
+            ChangedPass Change = new ChangedPass();
+            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
+            bool expected = true;
+            Assert.AreEqual(expected, actual);
+        }
+
+        ///'Mật khẩu (Mật khẩu nhỏ hơn 6).
+        [TestMethod]
+        public void LB_0065()
+        {
+            string tk = "admin";
+            string passold = "admin1";
+            string passnew = "admin";
+            string passnew2 = "admin";
+
+            ChangedPass Change = new ChangedPass();
+            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+            
+        }
 
 
+        ///'Mật khẩu (Mật khẩu mới lớn hơn 50).
+        [TestMethod]
+        public void LB_0066()
+        {
+            string tk = "admin";
+            string passold = "admin1";
+            string passnew = "111111111122222222223333333333111111111122222222223333333333";
+            string passnew2 = "111111111122222222223333333333111111111122222222223333333333";
 
+            ChangedPass Change = new ChangedPass();
+            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+            
+        }
+
+
+        ///'Mật khẩu  (Mật khẩu mới không trùng nhau).
+        [TestMethod]
+        public void LB_0067()
+        {
+            string tk = "admin";
+            string passold = "admin1";
+            string passnew = "admin1";
+            string passnew2 = "11111111112222222222333333333";
+
+            ChangedPass Change = new ChangedPass();
+            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+            
+        }
+
+
+        ///'Mật khẩu (Mật khẩu cũ sai).
+        [TestMethod]
+        public void LB_0068()
+        {
+            string tk = "admin";
+            string passold = "matkhausai";
+            string passnew = "admin1";
+            string passnew2 = "admin1";
+
+            ChangedPass Change = new ChangedPass();
+            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+            
+        }
+
+
+        ///'Mật khẩu (Mật khẩu cũ để trống).
+        [TestMethod]
+        public void LB_0069()
+        {
+            string tk = "admin";
+            string passold = "";
+            string passnew = "admin1";
+            string passnew2 = "admin1";
+
+            ChangedPass Change = new ChangedPass();
+            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+            
+        }
+
+
+        ///'Mật khẩu (Mật khẩu mới trống).
+        [TestMethod]
+        public void LB_0070()
+        {
+            string tk = "admin";
+            string passold = "admin1";
+            string passnew = "";
+            string passnew2 = "";
+
+            ChangedPass Change = new ChangedPass();
+            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
+            bool expected = false;
+            Assert.AreEqual(expected, actual);
+            
+        }
+
+
+        /// <summary>
+        ///'Tìm kiếm đơn giản ( tìm theo mã sách và để trống ô nhập truy vấn).
+        /// </summary>
+        [TestMethod]
+        public void LB_0071()
+        {
+            string cbbox = "";
+            string txtbox = "";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        ///''Tìm kiếm đơn giản (tìm theo mã sách và nhập đúng mã sách).
+        /// </summary>
+        [TestMethod]
+        public void LB_0072()
+        {
+            string cbbox = "TENSACH";
+            string txtbox = "MSA4";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("Select * from tblSach where (TENSACH like '%" + txtbox + "%' OR MASACH LIKE '%" + txtbox + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ''Tìm kiếm đơn giản( tìm theo mã sách và nhập sai mã sách).
+        /// </summary>
+        [TestMethod]
+        public void LB_0073()
+        {
+            string cbbox = "TENSACH";
+            string txtbox = "ABCD";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("Select * from tblSach where (TENSACH like '%" + txtbox + "%' OR MASACH LIKE '%" + txtbox + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// 'Tìm kiếm đơn giản ( tìm theo tên sách và để trống ô nhập tên sách).
+        /// </summary>
+        [TestMethod]
+        public void LB_0074()
+        {
+            string cbbox = "TENSACH";
+            string txtbox = "";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// ''Tìm kiếm đơn giản (tìm theo tên sách và nhập đúng tên sách).
+        /// </summary>
+        [TestMethod]
+        public void LB_0075()
+        {
+            string cbbox = "TENSACH";
+            string txtbox = "Anh hùng xà điêu";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("Select * from tblSach where (TENSACH like '%" + txtbox + "%' OR MASACH LIKE '%" + txtbox + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        ///'Tìm kiếm đơn giản( tìm theo tên sách và nhập sai tên sách).
+        /// </summary>
+        [TestMethod]
+        public void LB_0076()
+        {
+            string cbbox = "TENSACH";
+            string txtbox = "ABCD bcd";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("Select * from tblSach where (TENSACH like '%" + txtbox + "%' OR MASACH LIKE '%" + txtbox + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        //'Tìm kiếm đơn giản ( tìm theo mã tác giả và để trống ô nhập mã tác giả).
+        /// </summary>
+        [TestMethod]
+        public void LB_0077()
+        {
+            string cbbox = "TENTG";
+            string txtbox = "";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        /// 'Tìm kiếm đơn giản (tìm theo tên tác giả và nhập đúng tên tác giả).
+        /// </summary>
+        [TestMethod]
+        public void LB_0078()
+        {
+            string cbbox = "TENTG";
+            string txtbox = "MTG2";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = "select*from tblSach where (TENTG like '%" + txtbox + "%' OR MATG LIKE '%" + txtbox + "%')";
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        ///'Tìm kiếm đơn giản( tìm theo mã tác giả và nhập sai mã tác giả).
+        /// </summary>
+        [TestMethod]
+        public void LB_0079()
+        {
+            string cbbox = "TENSACH";
+            string txtbox = "MABC";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = "select*from tblSach where (TENTG like '%" + txtbox + "%' OR MATG LIKE '%" + txtbox + "%')";
+            Assert.AreEqual(expected, actual);
+
+        }
+        /// <summary>
+        ///'Tìm kiếm đơn giản ( tìm theo mã nhà xuất bản và để trống ô nhập mã nhà xuất bản).
+        /// </summary>
+        [TestMethod]
+        public void LB_0080()
+        {
+            string cbbox = "TENNXB";
+            string txtbox = "";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Tìm kiếm đơn giản ( tìm theo mã nhà xuất bản và nhập đúng mã nhà xuất bản).
+        [TestMethod]
+        public void LB_0081()
+        {
+            string cbbox = "TENNXB";
+            string txtbox = "MNXB10";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select*from tblSach where (MANXB like '%" + txtbox + "%' OR TENNXB LIKE '%" + txtbox + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Tìm kiếm đơn giản ( tìm theo mã nhà xuất bản và nhập sai mã nhà xuất bản).
+        [TestMethod]
+        public void LB_0082()
+        {
+            string cbbox = "TENNXB";
+            string txtbox = "MXNXB10112";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select*from tblSach where (MANXB like '%" + txtbox + "%' OR TENNXB LIKE '%" + txtbox + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Tìm kiếm đơn giản ( tìm theo mã lĩnh vực và để trống ô nhập mã lĩnh vực).
+        [TestMethod]
+        public void LB_0083()
+        {
+            string cbbox = "MALINHVUC";
+            string txtbox = "";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Tìm kiếm đơn giản ( tìm theo mã lĩnh vực và nhập đúng mã lĩnh vực).
+        [TestMethod]
+        public void LB_0084()
+        {
+            string cbbox = "MALINHVUC";
+            string txtbox = "MLV10";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select*from tblSach where (MaLv like '%" + txtbox + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Tìm kiếm đơn giản ( tìm theo mã lĩnh vực và nhập sai mã lĩnh vực).
+        [TestMethod]
+        public void LB_0085()
+        {
+            string cbbox = "MALINHVUC";
+            string txtbox = "MLV10123";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select*from tblSach where (MaLv like '%" + txtbox + "%')");
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Tìm kiếm đơn giản ( tìm theo năm xuất bản và để trống ô nhập năm xuất bản).
+        [TestMethod]
+        public void LB_0086()
+        {
+            string cbbox = "NAMXB";
+            string txtbox = "";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Tìm kiếm đơn giản ( tìm theo năm xuất bản và nhập đúng năm xuất bản).
+        [TestMethod]
+        public void LB_0087()
+        {
+            string cbbox = "NAMXB";
+            string txtbox = "2008";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select*from tblSach where " + cbbox + " like '%" + txtbox + "%'");
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Tìm kiếm đơn giản ( tìm theo năm xuất bản và nhập  năm là ký tự).
+        [TestMethod]
+        public void LB_0088()
+        {
+            string cbbox = "NAMXB";
+            string txtbox = "abc";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Tìm kiếm đơn giản ( tìm theo năm xuất bản và nhập sai năm xuất bản).
+        [TestMethod]
+        public void LB_0089()
+        {
+            string cbbox = "NAMXB";
+            string txtbox = "2025";
+            Login lg = new Login();
+            Search search = new Search();
+            search.search_1(cbbox, txtbox);
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select*from tblSach where " + cbbox + " like '%" + txtbox + "%'");
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Tìm kiếm đơn giản ( tìm theo ngày nhập và để trống ô ngày nhập).
+        [TestMethod]
+        public void LB_0090()
+        {
+            string cbbox = "TENTG";
+            string txtbox = "";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        //'Tìm kiếm đơn giản ( tìm theo ngày nhập và nhập ký tự ).
+        [TestMethod]
+        public void LB_0091()
+        {
+            string cbbox = "NGAYNHAP";
+            string txtbox = "abc";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri(" select * from tblSach");
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+        //'Tìm kiếm đơn giản ( tìm theo ngày nhập và nhập chính xác ngày nhập).
+        [TestMethod]
+        public void LB_0092()
+        {
+            string cbbox = "NGAYNHAP";
+            string txtbox = "30/06/2018";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach where " + cbbox + " like '%" + txtbox + "%'");
+            Assert.AreEqual(expected, actual);
+
+        }
+        //'Tìm kiếm đơn giản ( tìm theo ngày nhập và nhập không chính xác ngày nhập).
+        [TestMethod]
+        public void LB_0093()
+        {
+            string cbbox = "NGAYNHAP";
+            string txtbox = "14/09/2019";
+            Login lg = new Login();
+            Search search = new Search();
+            object actual = lg.layGiaTri(search.search_1(cbbox, txtbox));
+            object expected = lg.layGiaTri("select * from tblSach where " + cbbox + " like '%" + txtbox + "%'");
+            Assert.AreEqual(expected, actual);
+
+        }
+        
 
 
 
@@ -1133,172 +1714,10 @@ namespace UnitTestLB
             Assert.AreEqual(expected, actual);
         }
 
-
-        /// Update Nhân Viên------------------
-        [TestMethod]
-        public void Test_Update_Emp()
-        {
-            UpdateEMP Up = new UpdateEMP();
-            bool actual = Up.UpdateEmp("admin", "admin", "01234567891014", "admin", "admin", "admin");
-            bool expected = true;
-            Assert.AreEqual(expected, actual);
-        }
-
-
     
 
 
-        ///Pass ---------------
-        [TestMethod]
-        public void Test_Change_Pass()
-        {
-            string tk = "admin";
-            string passold = "admin1";
-            string passnew = "admin1";
-            string passnew2 = "admin1";
-
-            ChangedPass Change = new ChangedPass();
-            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
-            bool expected = true;
-            Assert.AreEqual(expected, actual);
-            Change.Changed_Pass(tk1, passold, new1, new2);  //// Cái này là dùng để Refersh lại TK vs MK nhoa////
-        }
-        [TestMethod]
-        public void Test_Change_Pass_Nho_Hon_6()
-        {
-            string tk = "admin";
-            string passold = "admin1";
-            string passnew = "admin";
-            string passnew2 ="admin";
-
-            ChangedPass Change = new ChangedPass();
-            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
-            bool expected = false;
-            Assert.AreEqual(expected, actual);
-            Change.Changed_Pass(tk1, passold, new1, new2); //// Cái này là dùng để Refersh lại TK vs MK nhoa////
-        }
-        [TestMethod]
-        public void Test_Change_Pass_Lon_Hon_30()
-        {
-            string tk = "admin";
-            string passold = "admin1";
-            string passnew = "111111111122222222223333333333";
-            string passnew2 = "111111111122222222223333333333";
-
-            ChangedPass Change = new ChangedPass();
-            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
-            bool expected = false;
-            Assert.AreEqual(expected, actual);
-            Change.Changed_Pass(tk1, passold, new1, new2); //// Cái này là dùng để Refersh lại TK vs MK nhoa////
-        }
-        [TestMethod]
-        public void Test_Change_Pass_Khong_Trung_MK_NEW1_NEW2()
-        {
-            string tk = "admin";
-            string passold = "admin1";
-            string passnew = "admin1";
-            string passnew2 = "11111111112222222222333333333";
-
-            ChangedPass Change = new ChangedPass();
-            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
-            bool expected = false;
-            Assert.AreEqual(expected, actual);
-            Change.Changed_Pass(tk1, passold, new1, new2); //// Cái này là dùng để Refersh lại TK vs MK nhoa////
-        }
-        [TestMethod]
-        public void Test_Change_Pass_Wrong_Pass_Old()
-        {
-            string tk = "admin";
-            string passold = "matkhausai";
-            string passnew = "admin1";
-            string passnew2 = "11111111112222222222333333333";
-
-            ChangedPass Change = new ChangedPass();
-            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
-            bool expected = false;
-            Assert.AreEqual(expected, actual);
-            Change.Changed_Pass(tk1, "admin1", new1, new2); //// Cái này là dùng để Refersh lại TK vs MK nhoa////
-        }
-        [TestMethod]
-        public void Test_Change_Pass_Null_Pass_Old()
-        {
-            string tk = "admin";
-            string passold = "admin";
-            string passnew = "admin1";
-            string passnew2 = "11111111112222222222333333333";
-
-            ChangedPass Change = new ChangedPass();
-            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
-            bool expected = false;
-            Assert.AreEqual(expected, actual);
-            Change.Changed_Pass(tk1, "admin1", new1, new2); //// Cái này là dùng để Refersh lại TK vs MK nhoa////
-        }
-        [TestMethod]
-        public void Test_Change_Pass_Null_Pass_New1()
-        {
-            string tk = "admin";
-            string passold = "admin1";
-            string passnew = "admin";
-            string passnew2 = "admin1";
-
-            ChangedPass Change = new ChangedPass();
-            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
-            bool expected = false;
-            Assert.AreEqual(expected, actual);
-            Change.Changed_Pass(tk1, passold, new1, new2); //// Cái này là dùng để Refersh lại TK vs MK nhoa////
-        }
-        [TestMethod]
-        public void Test_Change_Pass_Null_Pass_New2()
-        {
-            string tk = "admin";
-            string passold = "admin1";
-            string passnew = "admin1";
-            string passnew2 = "admin";
-
-            ChangedPass Change = new ChangedPass();
-            bool actual = Change.Changed_Pass(tk, passold, passnew, passnew2);
-            bool expected = false;
-            Assert.AreEqual(expected, actual);
-            Change.Changed_Pass(tk1, passold, new1, new2); //// Cái này là dùng để Refersh lại TK vs MK nhoa////
-        }
-        [TestMethod]
-        public void Test_Searching1_cbBox_Null()
-        {
-            string cbbox = "NGAYNHAP";
-            string txtbox = "admin";
-            Login lg = new Login();
-            Search search = new Search();
-            search.search_1(cbbox, txtbox);
-            object a = lg.layGiaTri(search.search_1(cbbox, txtbox));
-            string actual = Convert.ToString(a);
-            string expected = string.Empty;
-            Assert.AreEqual(expected, actual);
-
-        }
-        [TestMethod]
-        public void Test_Searching1_date()
-        {
-            string cbbox = "NGAYNHAP";
-            string txtbox = "30/02/2018";
-            CheckDate date = new CheckDate();
-            date.Check_Date(txtbox);
-            string actual = date.Check_Date(txtbox); ;
-            string expected = "Ngày không hợp lệ";
-            Assert.AreEqual(expected, actual);
-
-        }
-
-        [TestMethod]
-        public void Test_Searching1_Year()
-        {
-            string cbbox = "NAMXB";
-            string txtbox = "a";
-            CheckDate date = new CheckDate();
-            date.Check_Year(txtbox);
-            string actual = date.Check_Year(txtbox); ;
-            string expected = "Năm không hợp lệ";
-            Assert.AreEqual(expected, actual);
-
-        }
+       
+      
     }
 }

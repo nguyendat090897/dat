@@ -129,6 +129,7 @@
     <Compile Include="Proc\ChangedPass.cs" />
     <Compile Include="Proc\CheckDate.cs" />
     <Compile Include="Proc\checkThongTinNhanVien.cs" />
+    <Compile Include="Proc\Create_Acc.cs" />
     <Compile Include="Proc\Login.cs" />
     <Compile Include="Proc\Search.cs" />
     <Compile Include="Proc\UpdateEMP.cs" />

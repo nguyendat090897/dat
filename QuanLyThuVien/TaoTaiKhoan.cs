@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using QuanLyThuVien.Proc;
 namespace QuanLyThuVien
 {
     public partial class TaoTaiKhoan : Form
@@ -23,30 +23,16 @@ namespace QuanLyThuVien
 
         private void button1_Click(object sender, EventArgs e)
         {
+           string a = textBox1.Text;
+            string b  = textBox2.Text;
+            string  c = textBox3.Text;
+           
+            Create_Acc cre = new Create_Acc();
+            if (cre.Create(a, b, c) == true)
+            {
+                this.Close();
+            }
 
-            if (textBox1.Text.Length - 1 < 5)
-                MessageBox.Show("Tên tài khoản quá ngắn");
-            else
-                if (textBox1.Text.Length - 1 > 30)
-                    MessageBox.Show("Tên tài khoản quá dài");
-                else
-                    if (textBox2.Text.Length - 1 < 5)
-                        MessageBox.Show("Mật khẩu quá ngắn");
-                    else
-                        if (textBox3.Text.Length - 1 > 30)
-                            MessageBox.Show("Mật khẩu quá dài");
-                        else
-                            if (textBox2.Text != textBox3.Text)
-                                MessageBox.Show("Password không trùng nhau");
-                            else
-                            {
-                                try
-                                {
-                                    cls.ThucThiSQLTheoPKN("insert into tblNhanVien(TAIKHOAN,MATKHAU,QUYENHAN)values('" + textBox1.Text + "','" + textBox2.Text + "','user')");
-                                    MessageBox.Show("Tạo tài khoản thành công hãy cập nhật thông tin cho tài khoản");
-                                }
-                                catch { MessageBox.Show("Không thể tạo được táo khoản"); }
-                            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

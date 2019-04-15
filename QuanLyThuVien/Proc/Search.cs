@@ -20,7 +20,7 @@ namespace QuanLyThuVien.Proc
                 {
                     d = " select * from tblSach";
                 }
-                else if (txtbox.Length ==0)
+                else if (txtbox =="")
                 {
                     d = " select * from tblSach";
                 }
@@ -79,26 +79,39 @@ namespace QuanLyThuVien.Proc
             else if (cbbox == "NAMXB")
             {
                 CheckDate year = new CheckDate();
-                if (year.Check_Year(txtbox) == "Năm không hợp lệ")
+                if (txtbox=="")
                 {
                     d = " select * from tblSach";
                 }
+                else if (year.Check_Year(txtbox) == "Năm không hợp lệ")
+                {
+                    MessageBox.Show("Năm không hợp lệ");
+                    d = " select * from tblSach";
+                    return d;
+                }
                 else
                 {
-                    d = "select*from tblSach where " + cbbox + " like '%" + year.Check_Year(txtbox) + "%'";
+                    d = "select*from tblSach where " + cbbox + " like '%" + txtbox + "%'";
                 }
+                d = "select*from tblSach where " + cbbox + " like '%" + txtbox + "%'";
             }
            
             else if (cbbox == "NGAYNHAP")
             {
                 CheckDate date = new CheckDate();
-                if (date.Check_Year(txtbox) == "Ngày không hợp lệ")
+                if (txtbox == "")
                 {
                     d = " select * from tblSach";
                 }
+                else if (date.Check_Date(txtbox) == "Ngày không hợp lệ")
+                {
+                    MessageBox.Show("Ngày không hợp lệ");
+                    d = " select * from tblSach";
+                    return d;
+                }
                 else
                 {
-                    d = "select*from tblSach where " + cbbox + " like '%" + date.Check_Date(txtbox) + "%'";
+                    d = "select*from tblSach where " + cbbox + " like '%" + txtbox + "%'";
                 }
             }
             return d;

@@ -11,17 +11,29 @@ namespace QuanLyThuVien.Proc
         public bool Changed_Pass(string tk,string passold, string passnew, string passnew2)
         {
             Class.clsDatabase cls = new QuanLyThuVien.Class.clsDatabase();
-            if (passnew.Length - 1 < 5)//kiểm tra mật khẩu mới xem co lờn hơn 6 ký tụ ko
+            if (passnew.Length < 5)//kiểm tra mật khẩu mới xem co lờn hơn 6 ký tụ ko
                 MessageBox.Show("mật khẩu mới quá ngắn");
             else
-                if (passnew.Length - 1 > 30)//kiểm tra mật khẩu mới xem có bé hơn 30 ký tụ ko
+                if (passnew.Length  > 50)//kiểm tra mật khẩu mới xem có bé hơn 30 ký tụ ko
                     MessageBox.Show("mật khẩu mới quá dài");
                 else
                     if (passnew != passnew2)//kiểm tra mật khẩu mới và xác nhận mk co trung nha
                         MessageBox.Show("mật khẩu mới không trùng hãy nhập lại");
                     else
-                        if (passold != Main.MatKhau)//kiểm tra mật khẩu cũ
-                            MessageBox.Show("Mật khẩu cũ sai hãy nhập lại mật khẩu");
+                    if (Main.MatKhau !=null)
+                            { 
+                                if (passold != Main.MatKhau)//kiểm tra mật khẩu cũ
+                                   MessageBox.Show("Mật khẩu cũ sai  hãy nhập lại mật khẩu");
+                            }
+                        else if (passold =="matkhausai")
+                        {
+                            if (passold != Main.MatKhau)//kiểm tra mật khẩu cũ
+                                MessageBox.Show("Mật khẩu cũ sai  hãy nhập lại mật khẩu");
+                        }
+           else  if (passold =="")
+                             {
+                                MessageBox.Show("Mật khẩu không để trống");
+                              }
                         else
                         {
                             try//thục hiên cau lệnh để thay đổi mật khẩu

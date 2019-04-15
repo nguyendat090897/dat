@@ -14,3 +14,11 @@ C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\bin\Debug\QuanLyThuVien.pdb
 C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\obj\Debug\UnitTestLB.csprojResolveAssemblyReference.cache
 C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\obj\Debug\UnitTestLB.dll
 C:\Users\Mr. Right_Hand\Desktop\Libary\UnitTestLB\obj\Debug\UnitTestLB.pdb
+C:\Users\Mr. Right_Hand\Desktop\dat\UnitTestLB\bin\Debug\UnitTestLB.dll
+C:\Users\Mr. Right_Hand\Desktop\dat\UnitTestLB\bin\Debug\UnitTestLB.pdb
+C:\Users\Mr. Right_Hand\Desktop\dat\UnitTestLB\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Mr. Right_Hand\Desktop\dat\UnitTestLB\bin\Debug\QuanLyThuVien.exe
+C:\Users\Mr. Right_Hand\Desktop\dat\UnitTestLB\bin\Debug\QuanLyThuVien.pdb
+C:\Users\Mr. Right_Hand\Desktop\dat\UnitTestLB\obj\Debug\UnitTestLB.csprojResolveAssemblyReference.cache
+C:\Users\Mr. Right_Hand\Desktop\dat\UnitTestLB\obj\Debug\UnitTestLB.dll
+C:\Users\Mr. Right_Hand\Desktop\dat\UnitTestLB\obj\Debug\UnitTestLB.pdb

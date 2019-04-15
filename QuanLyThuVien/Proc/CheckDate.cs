@@ -21,6 +21,7 @@ namespace QuanLyThuVien.Proc
                 }
                 catch
                 {
+                    
                     return "Ngày không hợp lệ";
                 }
             }
@@ -40,6 +41,7 @@ namespace QuanLyThuVien.Proc
                 }
                 catch
                 {
+                   // MessageBox.Show("Năm không hợp lệ");
                     return "Năm không hợp lệ";
                 }
             }
